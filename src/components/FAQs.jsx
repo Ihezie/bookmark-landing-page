@@ -39,7 +39,7 @@ const FAQs = () => {
   ];
   const [expanded, setExpanded] = useState(false);
   return (
-    <motion.section layout>
+    <section>
       <motion.article
         variants={articleVariants}
         initial="hide"
@@ -58,7 +58,7 @@ const FAQs = () => {
           answered please feel free to email us.
         </p>
       </motion.article>
-      <motion.section layout className="container-px mb-16 transition-none">
+      <section className="container-px mb-16 transition-none">
         {questionsAndAnswers.map((item, index) => (
           <SingleQuestion
             key={index}
@@ -69,7 +69,7 @@ const FAQs = () => {
             setExpanded={setExpanded}
           />
         ))}
-      </motion.section>
+      </section>
       <motion.button
         whileHover={{
           y: -8,
@@ -81,7 +81,7 @@ const FAQs = () => {
       >
         more info
       </motion.button>
-    </motion.section>
+    </section>
   );
 };
 export default FAQs;
@@ -95,9 +95,8 @@ const SingleQuestion = ({
 }) => {
   const answerIsVisible = expanded === questionIndex;
   return (
-    <motion.article layout className="border-b border-gray-300 transition-none">
-      <motion.div
-        layout
+    <article className="border-b border-gray-300 transition-none">
+      <div
         className="flex justify-between items-center py-5 cursor-pointer transition-none group"
         onClick={() => {
           setExpanded(answerIsVisible ? false : questionIndex);
@@ -114,11 +113,10 @@ const SingleQuestion = ({
         >
           <path fill="none" strokeWidth="3" d="M1 1l8 8 8-8" />
         </svg>
-      </motion.div>
-      <AnimatePresence initial={false}>
+      </div>
+      <AnimatePresence>
         {answerIsVisible && (
-          <motion.p
-            layout
+          <motion.div
             initial="collapsed"
             animate="open"
             exit="collapsed"
@@ -126,12 +124,15 @@ const SingleQuestion = ({
               open: { height: "auto" },
               collapsed: { height: 0 },
             }}
-            className="text-grayishBlue pt-4 pb-8 transition-none overflow-hidden origin-center"
+            transition={{
+              duration: 0.5,
+            }}
+            className="transition-none overflow-hidden origin-center"
           >
-            {answer}
-          </motion.p>
+            <p className="pt-3 pb-8 text-grayishBlue">{answer}</p>
+          </motion.div>
         )}
       </AnimatePresence>
-    </motion.article>
+    </article>
   );
 };
