@@ -15,6 +15,7 @@ const Sidebar = () => {
     show: {
       ...show,
       transition: {
+        duration: 0.4,
         when: "beforeChildren",
         staggerChildren: 0.2,
         staggerDirection: 1,
@@ -22,11 +23,17 @@ const Sidebar = () => {
     },
     hide: {
       ...hide,
+      transition: {
+        duration: 0.3,
+      },
     },
   };
   const navItem = {
     show: {
       ...show,
+      transition: {
+        type: "tween",
+      },
     },
     hide: {
       ...hide,
@@ -41,9 +48,15 @@ const Sidebar = () => {
       variants={container}
       className="fixed z-10 top-0 left-0 right-0 h-screen bottom-0 bg-veryDarkBlue/90 container-px pt-28 text-xl text-center tracking-widest uppercase lg:hidden"
     >
-      <motion.ul initial={{ y: 0 }}>
+      <motion.ul>
         {links.map((item, index) => (
           <motion.li
+            whileHover={{
+              color: '#FA5757',
+              transition: {
+                duration: .5
+              }
+            }}
             variants={navItem}
             key={index}
             className="py-5 border-t border-slate-400 text-white"
@@ -55,7 +68,7 @@ const Sidebar = () => {
           className="pt-6 border-t border-slate-400"
           variants={navItem}
         >
-          <button className="block border-2 w-full uppercase tracking-[3px] py-3 rounded-md font-medium text-white hover:bg-white hover:text-veryDarkBlue/90">
+          <button className="block border-2 w-full uppercase tracking-[3px] py-3 rounded-md font-medium text-white hover:bg-white hover:text-veryDarkBlue/90 transition-all duration-500">
             login
           </button>
         </motion.li>

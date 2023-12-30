@@ -7,25 +7,21 @@ import Navbar from "./Navbar";
 
 const Header = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const headerVariants = {
-    show: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: .8,
-      },
-    },
-    hide: {
-      y: "-150%",
-      opacity: 0,
-    },
-  };
+
   return (
     <>
       <motion.header
-        initial="hide"
-        animate="show"
-        variants={headerVariants}
+        initial={{
+          opacity: 0,
+          y: -300,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.9,
+        }}
         className={`flex relative items-center justify-between container-px pt-10 z-20 ${
           isSidebarOpen ? "sticky top-0" : ""
         }`}

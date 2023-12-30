@@ -31,7 +31,7 @@ const Hero = () => {
   };
   return (
     <motion.section
-      className="mt-20 lg:grid lg:grid-cols-2 lg:items-center max-lg:[--hidden-opacity:0%] max-lg:[--shown-opacity:100%] max-lg:[--hidden-y:-30%] max-lg:[--shown-y:0%] transition-none"
+      className="mt-20 lg:grid lg:grid-cols-2 overflow-x-clip lg:items-center max-lg:[--hidden-opacity:0%] max-lg:[--shown-opacity:100%] max-lg:[--hidden-y:-30%] max-lg:[--shown-y:0%]"
       variants={heroVariants}
       initial="hide"
       animate="show"
@@ -56,36 +56,18 @@ const Hero = () => {
           a new browser tab and see your sites load instantly. Try it for free.
         </p>
         <div className="mt-8 flex items-center gap-4">
-          <motion.button
-            className="inline-block w-1/2 cursor-pointer font-medium bg-softBlue text-white py-3 rounded-md lg:w-44 lg:text-sm xl:text-base"
-            whileTap={{
-              rotate: "7deg",
-            }}
-            whileHover={{
-              y: -10,
-            }}
-            transition={{
-              duration: 0.1,
-            }}
+          <button
+            className="inline-block w-1/2 cursor-pointer font-medium bg-softBlue text-white h-12 rounded-md shadow-md lg:w-44 lg:text-sm xl:text-base lg:shadow-lg transition-all duration-500 hover:border-2 hover:border-softBlue hover:bg-white hover:text-softBlue"
           >
             {" "}
             Get it on Chrome
-          </motion.button>
-          <motion.button
-            className="inline-block w-1/2 cursor-pointer font-medium bg-slate-100 py-3 rounded-md shadow-md lg:w-44 lg:text-sm xl:text-base lg:shadow-lg"
-            whileTap={{
-              rotate: "7deg",
-            }}
-            whileHover={{
-              y: -12,
-            }}
-            transition={{
-              duration: 0.1,
-            }}
+          </button>
+          <button
+            className="inline-block w-1/2 cursor-pointer font-medium bg-slate-100 h-12 rounded-md shadow-md lg:w-44 lg:text-sm xl:text-base lg:shadow-lg transition-all duration-500 hover:border-2 hover:border-softBlue hover:bg-white hover:text-softBlue"
           >
             {" "}
             Get it on Firefox
-          </motion.button>
+          </button>
         </div>
       </motion.article>
     </motion.section>

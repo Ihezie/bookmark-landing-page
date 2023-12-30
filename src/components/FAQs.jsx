@@ -14,6 +14,7 @@ const FAQs = () => {
   };
   const viewportConfig = {
     once: true,
+    amount: 0.3,
   };
   const questionsAndAnswers = [
     {
@@ -39,12 +40,12 @@ const FAQs = () => {
   ];
   const [expanded, setExpanded] = useState(false);
   return (
-    <section>
+    <section className="container-px lg:px-[32%]">
       <motion.article
         variants={articleVariants}
         initial="hide"
         whileInView="show"
-        className="mt-40 text-center mb-16 container-px lg:px-[32%]"
+        className="mt-40 text-center mb-16 "
         transition={{
           duration: 0.5,
         }}
@@ -58,7 +59,19 @@ const FAQs = () => {
           answered please feel free to email us.
         </p>
       </motion.article>
-      <section className="container-px mb-16 transition-none">
+      <motion.section
+        viewport={viewportConfig}
+        transition={{
+          staggerChildren: 0.2,
+        }}
+        variants={{
+          show: { opacity: 1 },
+          hide: { opacity: 1 },
+        }}
+        initial="hide"
+        whileInView="show"
+        className="mb-16 transition-none"
+      >
         {questionsAndAnswers.map((item, index) => (
           <SingleQuestion
             key={index}
@@ -69,7 +82,7 @@ const FAQs = () => {
             setExpanded={setExpanded}
           />
         ))}
-      </section>
+      </motion.section>
       <motion.button
         whileHover={{
           y: -8,
@@ -77,7 +90,28 @@ const FAQs = () => {
         whileTap={{
           rotate: "10deg",
         }}
-        className="capitalize bg-softBlue text-white w-32 py-3 mt-9 rounded-md font-medium cursor-pointer mx-auto block"
+        initial="hide"
+        whileInView="show"
+        viewport={{
+          once: true,
+        }}
+        variants={{
+          show: {
+            y: 0,
+            opacity: 1,
+            transition: {
+              duration: 0.8,
+            },
+          },
+          hide: {
+            y: "150%",
+            opacity: 0,
+          },
+        }}
+        transition={{
+          duration: 0.4,
+        }}
+        className="capitalize bg-softBlue text-white w-32 py-3 mt-9 rounded-md font-medium cursor-pointer mx-auto block transition-none"
       >
         more info
       </motion.button>
@@ -94,20 +128,36 @@ const SingleQuestion = ({
   setExpanded,
 }) => {
   const answerIsVisible = expanded === questionIndex;
+  const questionVariants = {
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+      },
+    },
+    hide: {
+      y: "150%",
+      opacity: 0,
+    },
+  };
   return (
-    <article className="border-b border-gray-300 transition-none">
+    <motion.article
+      variants={questionVariants}
+      className="border-b border-gray-300 transition-none"
+    >
       <div
         className="flex justify-between items-center py-5 cursor-pointer transition-none group"
         onClick={() => {
           setExpanded(answerIsVisible ? false : questionIndex);
         }}
       >
-        <h2>{question}</h2>
+        <h2 className="text-lg group-hover:text-softRed transition-colors duration-300">{question}</h2>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
           height="12"
-          className={`stroke-softBlue group-hover:stroke-softRed ${
+          className={`stroke-softBlue transition-all duration-500 ${
             answerIsVisible ? "stroke-softRed rotate-180" : ""
           }`}
         >
@@ -127,12 +177,12 @@ const SingleQuestion = ({
             transition={{
               duration: 0.5,
             }}
-            className="transition-none overflow-hidden origin-center"
+            className="overflow-hidden origin-center"
           >
-            <p className="pt-3 pb-8 text-grayishBlue">{answer}</p>
+            <p className="pt-4 pb-8 text-grayishBlue">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
-    </article>
+    </motion.article>
   );
 };

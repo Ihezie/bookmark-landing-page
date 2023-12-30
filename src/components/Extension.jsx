@@ -35,7 +35,7 @@ const Extension = () => {
     },
   ];
   return (
-    <section className="">
+    <section>
       <motion.article
         variants={articleVariants}
         initial="hide"
@@ -75,13 +75,13 @@ const Extension = () => {
 };
 export default Extension;
 
-const Browser = ({ logo, name, minVers, index }) => {
+const Browser = ({ logo, name, minVers }) => {
   const browserVariants = {
     show: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.8,
       },
     },
     hide: {
@@ -103,7 +103,7 @@ const Browser = ({ logo, name, minVers, index }) => {
         Minimum version {minVers}
       </h3>
       <button
-        className="capitalize bg-softBlue text-white w-60 h-12 my-7 rounded-md font-medium cursor-pointer hover:bg-white hover:text-softBlue hover:border-2 hover:border-softBlue"
+        className="capitalize bg-softBlue text-white w-60 h-12 my-7 rounded-md font-medium cursor-pointer hover:bg-white hover:text-softBlue hover:border-2 hover:border-softBlue transition-all duration-300"
       >
         Add & Install Extension
       </button>

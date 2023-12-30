@@ -9,7 +9,7 @@
         font-family: 'Rubik', sans-serif;
     }
     *{
-        @apply transition-all duration-200 ease-linear text-veryDarkBlue 
+        @apply text-veryDarkBlue
     }
 }
 @layer components{
