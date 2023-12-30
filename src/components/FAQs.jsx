@@ -147,12 +147,12 @@ const SingleQuestion = ({
       className="border-b border-gray-300 transition-none"
     >
       <div
-        className="flex justify-between items-center py-5 cursor-pointer transition-none group"
+        className="flex gap-2 justify-between items-center py-5 cursor-pointer transition-none group"
         onClick={() => {
           setExpanded(answerIsVisible ? false : questionIndex);
         }}
       >
-        <h2 className="text-lg group-hover:text-softRed transition-colors duration-300">{question}</h2>
+        <h2 className="lg:text-lg group-hover:text-softRed transition-colors duration-300">{question}</h2>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
