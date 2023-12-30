@@ -10,9 +10,9 @@ export default {
         veryDarkBlue: "hsl(229, 31%, 21%)",
       },
       screens: {
-        lg: '900px',
-        xs: '425px'
-      }
+        lg: "900px",
+        xs: "425px",
+      },
     },
   },
   plugins: [],
