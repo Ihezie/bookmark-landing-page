@@ -62,8 +62,8 @@ const Features = () => {
       opacity: "var(--shown-opacity, 100%)",
       scale: "var(--shown-scale, 100%)",
       transition: {
-        duration: .4
-      }
+        duration: 0.4,
+      },
     },
     hide: {
       opacity: "var(--hidden-opacity, 100%)",
@@ -95,19 +95,21 @@ const Features = () => {
   ];
   const viewportConfig = {
     once: true,
-    amount: .1,
+    amount: 0.1,
   };
   const [scope, animate] = useAnimate();
   const handleClick = async (index) => {
     await animate(scope.current, { opacity: 0 });
     setTabIndex(index);
-    animate(scope.current, { opacity: 1 });
+    animate(scope.current, { opacity: 1 }, { delay: 0.2 });
   };
   return (
     <section>
-      <MotionConfig transition={{
-        type: "tween",
-      }}>
+      <MotionConfig
+        transition={{
+          type: "tween",
+        }}
+      >
         <motion.article
           variants={articleVariants}
           initial="hide"
@@ -143,7 +145,7 @@ const Features = () => {
                 handleClick(index);
               }}
               transition={{
-                duration: .5
+                duration: 0.5,
               }}
             >
               {feature.name}
