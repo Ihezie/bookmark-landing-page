@@ -43,7 +43,7 @@ const ContactUs = () => {
         Stay up-to-date with what we’re doing
       </h2>
       <form
-        className="xl:flex xl:items-center xl:gap-5"
+        className="xl:flex xl:items-start xl:gap-5"
         onSubmit={(e) => {
           e.preventDefault();
           validateEmail();
