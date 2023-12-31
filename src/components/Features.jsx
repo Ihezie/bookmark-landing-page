@@ -1,7 +1,7 @@
 import tab1Img from "../assets/images/illustration-features-tab-1.svg";
 import tab2Img from "../assets/images/illustration-features-tab-2.svg";
 import tab3Img from "../assets/images/illustration-features-tab-3.svg";
-import { motion, useAnimate, MotionConfig } from "framer-motion";
+import { motion, MotionConfig, AnimatePresence } from "framer-motion";
 import CurvedBlueBackground from "./CurvedBlueBackground";
 import { useState } from "react";
 
@@ -97,11 +97,9 @@ const Features = () => {
     once: true,
     amount: 0.1,
   };
-  const [scope, animate] = useAnimate();
-  const handleClick = async (index) => {
-    await animate(scope.current, { opacity: 0 });
+
+  const handleClick = (index) => {
     setTabIndex(index);
-    animate(scope.current, { opacity: 1 }, { delay: 0.2 });
   };
   return (
     <section>
@@ -128,7 +126,7 @@ const Features = () => {
           </p>
         </motion.article>
         <motion.ul
-          className="transition-none mb-20 mx-8 sm:mx-[10%] lg:flex lg:justify-center lg:mb-16 lg:[--hidden-opacity-ul:0%] lg:[--shown-opacity-ul:100%] lg:[--hidden-y:150%] lg:border-b lg:border-gray-300 lg:w-max lg:mx-auto"
+          className=" mb-20 mx-8 sm:mx-[10%] lg:flex lg:justify-center lg:mb-16 lg:[--hidden-opacity-ul:0%] lg:[--shown-opacity-ul:100%] lg:[--hidden-y:150%] lg:border-b lg:border-gray-300 lg:w-max lg:mx-auto"
           variants={listVariants}
           initial="hide"
           whileInView="show"
@@ -152,48 +150,56 @@ const Features = () => {
             </motion.li>
           ))}
         </motion.ul>
-        <motion.section
-          className="mb-44 lg:grid lg:grid-cols-2 lg:items-center max-lg:[--hidden-opacity:0%] max-lg:[--shown-opacity:100%] max-lg:[--hidden-y:30%] max-lg:[--shown-y:0%] transition-none overflow-x-clip overflow-y-visible"
-          variants={tabVariants}
-          initial="hide"
-          whileInView="show"
-          viewport={viewportConfig}
-          ref={scope}
-        >
-          <motion.div
-            className="relative -z-20 container-px lg:pl-[20%] lg:pr-0 lg:[--shown-x:0%] lg:[--shown-opacity:100%] lg:[--hidden-x:-100%] lg:[--hidden-opacity:0%] transition-none"
-            variants={tabItemVariants}
-            viewport={viewportConfig}
+        <AnimatePresence>
+          <motion.section
+            key={tabIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <img
-              src={features[tabIndex].image}
-              alt=""
-              className="mx-auto w-full"
-            />
-            <CurvedBlueBackground flip={true} />
-          </motion.div>
-          <motion.article
-            className="mt-24 text-center mb-16 container-px lg:text-left lg:px-[20%] lg:my-0 lg:[--shown-x:0%] lg:[--shown-opacity:100%] lg:[--hidden-x:100%] lg:[--hidden-opacity:0%] transition-none"
-            variants={tabItemVariants}
-            viewport={viewportConfig}
-          >
-            <h1 className="font-medium text-3xl mb-5 capitalize">
-              {features[tabIndex].heading}
-            </h1>
-            <p className="text-grayishBlue">{features[tabIndex].details}</p>
-            <motion.button
-              whileHover={{
-                y: -8,
-              }}
-              whileTap={{
-                rotate: "10deg",
-              }}
-              className="capitalize bg-softBlue text-white w-32 py-3 mt-9 rounded-md font-medium cursor-pointer hidden lg:block"
+            <motion.div
+              className="mb-44 lg:grid lg:grid-cols-2 lg:items-center max-lg:[--hidden-opacity:0%] max-lg:[--shown-opacity:100%] max-lg:[--hidden-y:30%] max-lg:[--shown-y:0%]  overflow-x-clip overflow-y-visible"
+              variants={tabVariants}
+              initial="hide"
+              whileInView="show"
+              viewport={viewportConfig}
             >
-              more info
-            </motion.button>
-          </motion.article>
-        </motion.section>
+              <motion.div
+                className="relative -z-20 container-px lg:pl-[20%] lg:pr-0 lg:[--shown-x:0%] lg:[--shown-opacity:100%] lg:[--hidden-x:-100%] lg:[--hidden-opacity:0%] "
+                variants={tabItemVariants}
+                viewport={viewportConfig}
+              >
+                <img
+                  src={features[tabIndex].image}
+                  alt=""
+                  className="mx-auto w-full"
+                />
+                <CurvedBlueBackground flip={true} />
+              </motion.div>
+              <motion.article
+                className="mt-24 text-center mb-16 container-px lg:text-left lg:px-[20%] lg:my-0 lg:[--shown-x:0%] lg:[--shown-opacity:100%] lg:[--hidden-x:100%] lg:[--hidden-opacity:0%] "
+                variants={tabItemVariants}
+                viewport={viewportConfig}
+              >
+                <h1 className="font-medium text-3xl mb-5 capitalize">
+                  {features[tabIndex].heading}
+                </h1>
+                <p className="text-grayishBlue">{features[tabIndex].details}</p>
+                <motion.button
+                  whileHover={{
+                    y: -8,
+                  }}
+                  whileTap={{
+                    rotate: "10deg",
+                  }}
+                  className="capitalize bg-softBlue text-white w-32 py-3 mt-9 rounded-md font-medium cursor-pointer hidden lg:block"
+                >
+                  more info
+                </motion.button>
+              </motion.article>
+            </motion.div>
+          </motion.section>
+        </AnimatePresence>
       </MotionConfig>
     </section>
   );
