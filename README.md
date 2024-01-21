@@ -14,7 +14,6 @@ This is a solution to the [Bookmark landing page challenge on Frontend Mentor](h
   - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -48,14 +47,14 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [tailwindCSS](https://tailwindcss.com/) - CSS library
-- [framer-motion](https://www.framer.com/motion/) - Animation library
+- [framer-motion](https://www.framer.com/motion/) - Animation Library
 
 ### What I learned
-This project was tasking for me to complete not because it was inherently difficult, but because of the variety of animations I took upon myself to add. During this project, I got to practice using the framer-motion animation library to implement scroll and state triggered animations. The result is smooth user-friendly animations, that complement the general aesthetic of the site quite nicely. Also, my CSS layout skills were lightly challenged by this project. All in all, I would say this project improved my web design skills substantially.
+This project was tasking for me to complete not because it was inherently difficult, but because of the variety of animations I took upon myself to add. During this project, I got to practice using the framer-motion animation library to implement scroll and state-triggered animations. The result is smooth user-friendly animations, that complement the general aesthetic of the site quite nicely. Also, my CSS layout skills were lightly challenged by this project. All in all, I would say this project improved my web design skills substantially.
 
 ### Useful resources
 
-- [Example resource 1](https://www.freecodecamp.org/news/regular-expressions-for-beginners/) - This article helped me understand regular expressions, which I used for email validation in the contact us section.
+- [Example resource 1](https://www.freecodecamp.org/news/regular-expressions-for-beginners/) - This article helped me understand regular expressions, which I used for email validation in the Contact Us section.
 
 ## Author
 - Frontend Mentor - [@Ihezie](https://www.frontendmentor.io/profile/Ihezie)
